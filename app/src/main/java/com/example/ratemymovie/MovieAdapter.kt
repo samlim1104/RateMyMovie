@@ -19,7 +19,7 @@ class MovieAdapter(var loanList: MutableList<MovieData>) :
     RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewMovieName: TextView
-        val textViewRating: Double
+        val textViewRating: TextView
         val layout: ConstraintLayout
 
         init {
