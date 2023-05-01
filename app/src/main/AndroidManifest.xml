@@ -4,6 +4,7 @@
     package="com.example.ratemymovie">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -16,10 +17,10 @@
         android:theme="@style/Theme.RateMyMovie"
         tools:targetApi="31">
         <activity
-            android:name=".MovieDetailActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".Registration"
+            android:name=".MovieDetailActivity"
             android:exported="false" />
         <activity
             android:name=".MovieListActivity"

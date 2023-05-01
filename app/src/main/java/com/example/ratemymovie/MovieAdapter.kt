@@ -42,8 +42,8 @@ class MovieAdapter(var loanList: MutableList<MovieData>) :
         holder.textViewAmountOwed.text = String.format("$%.2f", loan.initialLoanValue - loan.amountRepaid)
 
         holder.layout.setOnClickListener {
-            val loanDetailActivity = Intent(it.context, LoanDetailActivity::class.java)
-            loanDetailActivity.putExtra(LoanDetailActivity.EXTRA_LOAN, loan)
+            val loanDetailActivity = Intent(it.context, MovieDetailActivity::class.java)
+            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_MOVIE, loan)
             it.context.startActivity(loanDetailActivity)
         }
         holder.layout.isLongClickable = true
