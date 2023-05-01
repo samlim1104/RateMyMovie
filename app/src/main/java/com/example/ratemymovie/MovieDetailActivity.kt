@@ -31,12 +31,10 @@ class MovieDetailActivity : AppCompatActivity() {
             toggleEditable()
         } else {
             movie = passedMovie!!
-            binding.editTextMovieName.setText(movie.name)
-            binding.editTextRating.setText(movie.rating.toString())
+            binding.textViewDetailName.setText(movie.name)
         }
-            binding.buttonSave.setOnClickListener {
-                movie.name = binding.editTextMovieName.text.toString()
-                movie.rating = binding.editTextRating.text.toString().toDouble()
+            binding.buttonDetailSave.setOnClickListener {
+                movie.name = binding.textViewDetailName.text.toString()
                 Backendless.Data.of(MovieData::class.java)
                     .save(movie, object : AsyncCallback<MovieData> {
                         override fun handleResponse(response: MovieData?) {
@@ -73,20 +71,16 @@ class MovieDetailActivity : AppCompatActivity() {
     private fun toggleEditable() {
         if (MovieIsEditable) {
             MovieIsEditable = false
-            binding.buttonSave.isEnabled = false
-            binding.buttonSave.visibility = View.GONE
-            binding.editTextMovieName.inputType = InputType.TYPE_NULL
-            binding.editTextMovieName.isEnabled = false
-            binding.editTextRating.inputType = InputType.TYPE_NULL
-            binding.editTextRating.isEnabled = false
+            binding.buttonDetailSave.isEnabled = false
+            binding.buttonDetailSave.visibility = View.GONE
+            binding.textViewDetailName.inputType = InputType.TYPE_NULL
+            binding.textViewDetailName.isEnabled = false
         } else {
             MovieIsEditable = false
-            binding.buttonSave.isEnabled = true
-            binding.buttonSave.visibility = View.VISIBLE
-            binding.editTextMovieName.inputType = InputType.TYPE_TEXT_VARIATION_PERSON_NAME
-            binding.editTextMovieName.isEnabled = true
-            binding.editTextRating.inputType = InputType.TYPE_NUMBER_VARIATION_NORMAL
-            binding.editTextRating.isEnabled = true
+            binding.buttonDetailSave.isEnabled = true
+            binding.buttonDetailSave.visibility = View.VISIBLE
+            binding.textViewDetailName.inputType = InputType.TYPE_TEXT_VARIATION_PERSON_NAME
+            binding.textViewDetailName.isEnabled = true
         }
     }
 }
