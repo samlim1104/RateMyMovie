@@ -15,7 +15,7 @@ import com.backendless.Backendless
 import com.backendless.async.callback.AsyncCallback
 import com.backendless.exceptions.BackendlessFault
 
-class MovieAdapter(var loanList: MutableList<MovieData>) :
+class MovieAdapter(var movieList: MutableList<MovieData>) :
     RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewMovieName: TextView
@@ -31,45 +31,27 @@ class MovieAdapter(var loanList: MutableList<MovieData>) :
     }
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_loan, viewGroup, false)
+            .inflate(R.layout.item_movie_data, viewGroup, false)
 
         return ViewHolder(view)
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val loan = loanList[position]
-        var context = holder.textViewBorrower.context
-        holder.textViewBorrower.text = loan.lendee
-        holder.textViewAmountOwed.text = String.format("$%.2f", loan.initialLoanValue - loan.amountRepaid)
+        val movie = movieList[position]
+        var context = holder.textViewMovieName.context
+        holder.textViewMovieName.text = movie.name
+        holder.textViewRating.text = movie.rating.toString()
 
         holder.layout.setOnClickListener {
-            val loanDetailActivity = Intent(it.context, LoanDetailActivity::class.java)
-            loanDetailActivity.putExtra(LoanDetailActivity.EXTRA_LOAN, loan)
+            val loanDetailActivity = Intent(it.context, MovieDetailActivity::class.java)
+            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_MOVIE, movie)
             it.context.startActivity(loanDetailActivity)
-        }
-        holder.layout.isLongClickable = true
-        holder.layout.setOnLongClickListener {
-            val popMenu = PopupMenu(context, holder.textViewBorrower)
-            popMenu.inflate(R.menu.menu_loanlist_context)
-            popMenu.setOnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.menu_item_loan_detail_delete -> {
-                        deleteFromBackendless(position, context)
-                        true
-                    }
-                    else -> {
-                        true
-                    }
-                }
-            }
-            popMenu.show()
-            true
         }
     }
     private fun deleteFromBackendless(position: Int, con : Context) {
-        Backendless.Data.of(MovieData::class.java).remove(loanList[position],
+        Backendless.Data.of(MovieData::class.java).remove(movieList[position],
             object : AsyncCallback<Long?> {
                 override fun handleResponse(response: Long?) {
-                    Toast.makeText(con, "${loanList[position].name} Deleted", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(con, "${movieList[position].name} Deleted", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun handleFault(fault: BackendlessFault?) {
@@ -80,5 +62,5 @@ class MovieAdapter(var loanList: MutableList<MovieData>) :
             })
     }
 
-    override fun getItemCount() = loanList.size
+    override fun getItemCount() = movieList.size
 }
