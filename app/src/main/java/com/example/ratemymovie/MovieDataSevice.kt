@@ -6,7 +6,6 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MovieDataSevice {
-    @GET("t.json")
-    fun getMovieDataByTitle(@Path("title") name: String, @Query("apiKey") apiKey: String) : Call<List<MovieData>>
-
+    @GET("t={title}.json")
+    fun getMovieDataByTitle(@Path("title") name: String, @Query("apikey") apikey: String) : Call<MovieData>
 }
