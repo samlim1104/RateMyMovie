@@ -19,14 +19,14 @@
             android:name=".RegistrationActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
             android:name=".MovieDetailActivity"
             android:exported="false" />
         <activity
             android:name=".MovieListActivity"
-            android:exported="true">
+            android:exported="false"/>
+            <activity
+                android:name=".LoginActivity"
+                android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
