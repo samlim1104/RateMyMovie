@@ -4,9 +4,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.service.controls.ControlsProviderService
 import android.util.Log
+import com.backendless.Backendless
+import com.backendless.BackendlessUser
+import com.backendless.async.callback.AsyncCallback
+import com.backendless.exceptions.BackendlessFault
 import com.example.ratemymovie.databinding.ActivityRegistrationBinding
 
 class RegistrationActivity : AppCompatActivity() {
+    companion object {
+        val TAG = "Registration"
+    }
     private lateinit var binding: ActivityRegistrationBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -8,6 +8,11 @@ import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.ratemymovie.databinding.ActivityLoginBinding
+import com.backendless.Backendless
+import com.backendless.BackendlessUser
+import com.backendless.async.callback.AsyncCallback
+import com.backendless.exceptions.BackendlessFault
+import com.backendless.persistence.DataQueryBuilder
 
 class LoginActivity : AppCompatActivity() {
     companion object{
@@ -44,8 +49,8 @@ class LoginActivity : AppCompatActivity() {
                     override fun handleResponse(user: BackendlessUser?) {
                         Log.d(TAG, " handleResponse: ${user?.getProperty("username")} has logged in")
                         val userId = user!!.objectId
-                        val loanListIntent = Intent(it.context,LoanListActivity::class.java)
-                        loanListIntent.putExtra(LoanListActivity.EXTRA_OBJECT_ID, user.objectId)
+                        val loanListIntent = Intent(it.context,MovieListActivity::class.java)
+                            // loanListIntent.putExtra(MovieListActivity.EXTRA_OBJECT_ID, user.objectId)
                         it.context.startActivity(loanListIntent)
                     }
 

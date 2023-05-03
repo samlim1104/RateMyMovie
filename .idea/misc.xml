@@ -3,10 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_movie_detail.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/activity_movie_list.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_registration.xml" value="0.13240740740740742" />
-        <entry key="app/src/main/res/layout/item_movie_data.xml" value="0.3692708333333333" />
+        <entry key="app/src/main/res/drawable/grey_border_bottom.xml" value="0.1915" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.22864583333333333" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/activity_movie_detail.xml" value="0.22864583333333333" />
+        <entry key="app/src/main/res/layout/activity_movie_list.xml" value="0.22864583333333333" />
+        <entry key="app/src/main/res/layout/activity_registration.xml" value="0.22864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.24010416666666667" />
+        <entry key="app/src/main/res/layout/item_movie_data.xml" value="0.22864583333333333" />
+        <entry key="app/src/main/res/layout/snippet_searchbar_toolbar.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/snippetviewcontact_toolbar.xml" value="0.31567028985507245" />
       </map>
     </option>
   </component>
