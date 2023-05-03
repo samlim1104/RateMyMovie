@@ -2,6 +2,7 @@ package com.example.ratemymovie
 
 import android.app.Activity
 import android.content.Intent
+import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import com.backendless.Backendless
 import com.backendless.BackendlessUser
 import com.backendless.async.callback.AsyncCallback
 import com.backendless.exceptions.BackendlessFault
+import com.example.ratemymovie.MovieListActivity.Companion.TAG
 import com.example.ratemymovie.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -32,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Backendless.initApp(this, Constants.APP_ID, Constants.API_KEY)
+        Backendless.initApp(this, Constants.APP_ID_BACKENDLESS, Constants.API_KEY)
 
         binding.buttonLoginButton.setOnClickListener {
             Backendless.UserService.login(

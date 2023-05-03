@@ -10,6 +10,7 @@ import com.backendless.Backendless
 import com.backendless.BackendlessUser
 import com.backendless.async.callback.AsyncCallback
 import com.backendless.exceptions.BackendlessFault
+import com.example.ratemymovie.MovieListActivity.Companion.TAG
 import com.example.ratemymovie.databinding.ActivityRegistrationBinding
 
 class RegistrationActivity : AppCompatActivity() {
