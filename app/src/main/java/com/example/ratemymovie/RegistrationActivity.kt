@@ -27,14 +27,10 @@ class RegistrationActivity : AppCompatActivity() {
 
         binding.buttonRegRegisterButton.setOnClickListener {
             val password = binding.editTextRegPassword.text.toString()
-            val confirm = binding.editTextConfPass.text.toString()
+            val confirm  = binding.editTextConfPass.text.toString()
             val username = binding.editTextRegUsername.text.toString()
             val email = binding.editTextRegEmail.text.toString()
-            if (RegistrationUtil.validatePassword(
-                    password,
-                    confirm
-                ) && RegistrationUtil.validateUsername(username)
-            )
+            if(RegistrationUtil.validatePassword(password,confirm) && RegistrationUtil.validateUsername(username)) {
 
 //                val resultIntent = Intent().apply {
 //                    //apply {putExtra()} is doing the sane thing as resultIntent.putExtra()
@@ -46,15 +42,12 @@ class RegistrationActivity : AppCompatActivity() {
 //                }
                 val user = BackendlessUser()
                 user.setProperty("email", email)
-                user.setProperty("username", username)
+                user.setProperty("username",username)
                 user.password = password.toString()
 
                 Backendless.UserService.register(user, object : AsyncCallback<BackendlessUser?> {
                     override fun handleResponse(registeredUser: BackendlessUser?) {
-                        Log.d(
-                            ControlsProviderService.TAG,
-                            "handleResponse : ${user?.getProperty("username")} has been registered"
-                        )
+                        Log.d(ControlsProviderService.TAG, "handleResponse : ${user?.getProperty("username")} has been registered")
                     }
 
                     override fun handleFault(fault: BackendlessFault) {
