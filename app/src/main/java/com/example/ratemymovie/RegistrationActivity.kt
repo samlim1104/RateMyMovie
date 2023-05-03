@@ -1,19 +1,19 @@
 package com.example.ratemymovie
 
-import android.app.Activity
-import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.service.controls.ControlsProviderService
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import com.backendless.Backendless
 import com.backendless.BackendlessUser
 import com.backendless.async.callback.AsyncCallback
 import com.backendless.exceptions.BackendlessFault
-import com.example.ratemymovie.MovieListActivity.Companion.TAG
 import com.example.ratemymovie.databinding.ActivityRegistrationBinding
 
 class RegistrationActivity : AppCompatActivity() {
+    companion object {
+        val TAG = "Registration"
+    }
     private lateinit var binding: ActivityRegistrationBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,34 +27,27 @@ class RegistrationActivity : AppCompatActivity() {
 
         binding.buttonRegRegisterButton.setOnClickListener {
             val password = binding.editTextRegPassword.text.toString()
-            val confirm = binding.editTextConfPass.text.toString()
+            val confirm  = binding.editTextConfPass.text.toString()
             val username = binding.editTextRegUsername.text.toString()
             val email = binding.editTextRegEmail.text.toString()
-            if (RegistrationUtil.validatePassword(
-                    password,
-                    confirm
-                ) && RegistrationUtil.validateUsername(username)
-            ){
+            if(RegistrationUtil.validatePassword(password,confirm) && RegistrationUtil.validateUsername(username)) {
 
-                val resultIntent = Intent().apply {
-                    //apply {putExtra()} is doing the sane thing as resultIntent.putExtra()
-                    putExtra(
-                        LoginActivity.EXTRA_USERNAME,
-                        binding.editTextRegUsername.text.toString()
-                    )
-                    putExtra(LoginActivity.EXTRA_PASSWORD, password)
-                }
+//                val resultIntent = Intent().apply {
+//                    //apply {putExtra()} is doing the sane thing as resultIntent.putExtra()
+//                    putExtra(
+//                        LoginActivity.EXTRA_USERNAME,
+//                        binding.editTextRegUsername.text.toString()
+//                    )
+//                    putExtra(LoginActivity.EXTRA_PASSWORD, password)
+//                }
                 val user = BackendlessUser()
                 user.setProperty("email", email)
-                user.setProperty("username", username)
+                user.setProperty("username",username)
                 user.password = password.toString()
 
                 Backendless.UserService.register(user, object : AsyncCallback<BackendlessUser?> {
                     override fun handleResponse(registeredUser: BackendlessUser?) {
-                        Log.d(
-                            ControlsProviderService.TAG,
-                            "handleResponse : ${user?.getProperty("username")} has been registered"
-                        )
+                        Log.d(ControlsProviderService.TAG, "handleResponse : ${user?.getProperty("username")} has been registered")
                     }
 
                     override fun handleFault(fault: BackendlessFault) {
