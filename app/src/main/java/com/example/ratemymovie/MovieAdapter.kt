@@ -35,7 +35,7 @@ class MovieAdapter(var dataset: List<MovieData>):
         return ViewHolder(view)
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val movie = movieList[position]
+        val movie = dataset[position]
         var context = holder.textViewMovieName.context
         holder.textViewMovieName.text = movie.name
         holder.textViewRating.text = movie.rating.toString()
@@ -47,10 +47,10 @@ class MovieAdapter(var dataset: List<MovieData>):
         }
     }
     private fun deleteFromBackendless(position: Int, con : Context) {
-        Backendless.Data.of(MovieData::class.java).remove(movieList[position],
+        Backendless.Data.of(MovieData::class.java).remove(dataset[position],
             object : AsyncCallback<Long?> {
                 override fun handleResponse(response: Long?) {
-                    Toast.makeText(con, "${movieList[position].name} Deleted", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(con, "${dataset[position].name} Deleted", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun handleFault(fault: BackendlessFault?) {
@@ -61,5 +61,5 @@ class MovieAdapter(var dataset: List<MovieData>):
             })
     }
 
-    override fun getItemCount() = movieList.size
+    override fun getItemCount() = dataset.size
 }
