@@ -30,7 +30,7 @@ class MovieListActivity : AppCompatActivity() {
         val userId = intent.getStringExtra(EXTRA_USER_ID)
         Log.d("onCreate", "$userId")
         retrieveAllData(userId!!)
-        binding.recyclerViewActivityMovielist.setOnClickListener {
+        binding.fabLoanListCreateNewMovie.setOnClickListener {
             val loanDetailIntent = Intent(this, MovieDetailActivity::class.java).apply {
                 putExtra(EXTRA_USER_ID, userId)
             }

@@ -1,9 +1,15 @@
 package com.example.ratemymovie
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.service.controls.ControlsProviderService
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.backendless.Backendless
+import com.backendless.BackendlessUser
+import com.backendless.async.callback.AsyncCallback
+import com.backendless.exceptions.BackendlessFault
 import com.example.ratemymovie.databinding.ActivityRegistrationBinding
 
 class RegistrationActivity : AppCompatActivity() {
@@ -27,16 +33,16 @@ class RegistrationActivity : AppCompatActivity() {
                     password,
                     confirm
                 ) && RegistrationUtil.validateUsername(username)
-            )
+            ){
 
-//                val resultIntent = Intent().apply {
-//                    //apply {putExtra()} is doing the sane thing as resultIntent.putExtra()
-//                    putExtra(
-//                        LoginActivity.EXTRA_USERNAME,
-//                        binding.editTextRegUsername.text.toString()
-//                    )
-//                    putExtra(LoginActivity.EXTRA_PASSWORD, password)
-//                }
+                val resultIntent = Intent().apply {
+                    //apply {putExtra()} is doing the sane thing as resultIntent.putExtra()
+                    putExtra(
+                        LoginActivity.EXTRA_USERNAME,
+                        binding.editTextRegUsername.text.toString()
+                    )
+                    putExtra(LoginActivity.EXTRA_PASSWORD, password)
+                }
                 val user = BackendlessUser()
                 user.setProperty("email", email)
                 user.setProperty("username", username)

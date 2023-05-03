@@ -16,7 +16,6 @@ class MovieDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMovieDetailBinding
     var MovieIsEditable = false
     lateinit var movie: MovieData
-
     companion object {
         val EXTRA_MOVIE = "movie"
     }
