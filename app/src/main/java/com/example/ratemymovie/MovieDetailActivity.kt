@@ -26,17 +26,21 @@ class MovieDetailActivity : AppCompatActivity() {
         binding = ActivityMovieDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         var passedMovie = intent.getParcelableExtra<MovieData>(EXTRA_MOVIE)
+
         if (passedMovie == null) {
             movie = MovieData()
             toggleEditable()
         } else {
             movie = passedMovie!!
-            binding.editTextMovieName.setText(movie.name)
-            binding.editTextRating.setText(movie.rating.toString())
+            binding.textViewDetailName.setText(passedMovie.name)
+            binding.textView10DetailMatrat.setText(passedMovie.maturityRating)
+            binding.textView11DetailRuntime.setText(passedMovie.runtime).toString()
+            binding.textViewDetailGenre.setText(passedMovie.genre).toString()
+            binding.textViewDetailPlot.setText(passedMovie.plot)
+            binding.textViewDetailYear.setText(passedMovie.year).toString()
         }
-            binding.buttonSave.setOnClickListener {
-                movie.name = binding.editTextMovieName.text.toString()
-                movie.rating = binding.editTextRating.text.toString().toDouble()
+            binding.buttonDetailSave.setOnClickListener {
+                movie.name = binding.textViewDetailName.text.toString()
                 Backendless.Data.of(MovieData::class.java)
                     .save(movie, object : AsyncCallback<MovieData> {
                         override fun handleResponse(response: MovieData?) {
@@ -73,20 +77,16 @@ class MovieDetailActivity : AppCompatActivity() {
     private fun toggleEditable() {
         if (MovieIsEditable) {
             MovieIsEditable = false
-            binding.buttonSave.isEnabled = false
-            binding.buttonSave.visibility = View.GONE
-            binding.editTextMovieName.inputType = InputType.TYPE_NULL
-            binding.editTextMovieName.isEnabled = false
-            binding.editTextRating.inputType = InputType.TYPE_NULL
-            binding.editTextRating.isEnabled = false
+            binding.buttonDetailSave.isEnabled = false
+            binding.buttonDetailSave.visibility = View.GONE
+            binding.textViewDetailName.inputType = InputType.TYPE_NULL
+            binding.textViewDetailName.isEnabled = false
         } else {
             MovieIsEditable = false
-            binding.buttonSave.isEnabled = true
-            binding.buttonSave.visibility = View.VISIBLE
-            binding.editTextMovieName.inputType = InputType.TYPE_TEXT_VARIATION_PERSON_NAME
-            binding.editTextMovieName.isEnabled = true
-            binding.editTextRating.inputType = InputType.TYPE_NUMBER_VARIATION_NORMAL
-            binding.editTextRating.isEnabled = true
+            binding.buttonDetailSave.isEnabled = true
+            binding.buttonDetailSave.visibility = View.VISIBLE
+            binding.textViewDetailName.inputType = InputType.TYPE_TEXT_VARIATION_PERSON_NAME
+            binding.textViewDetailName.isEnabled = true
         }
     }
 }
