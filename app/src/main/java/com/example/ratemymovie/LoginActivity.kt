@@ -24,8 +24,8 @@ class LoginActivity : AppCompatActivity() {
             result: ActivityResult ->
         if (result.resultCode == Activity.RESULT_OK) {
             val intent = result.data
-            binding.editTextTextPersonName.setText(intent?.getStringExtra(EXTRA_USERNAME))
-            binding.editTextTextPassword.setText(intent?.getStringExtra((EXTRA_PASSWORD)))
+            binding.editTextLoginUsername.setText(intent?.getStringExtra(EXTRA_USERNAME))
+            binding.editTextLoginPassword.setText(intent?.getStringExtra((EXTRA_PASSWORD)))
         }
     }
     private lateinit var binding: ActivityLoginBinding
@@ -35,16 +35,16 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonRegister.setOnClickListener{
+        binding.buttonLoginButton.setOnClickListener{
             val registrationIntent = Intent(this, RegistrationActivity :: class.java)
-            registrationIntent.putExtra(EXTRA_USERNAME, binding.editTextTextPersonName.text.toString())
-            registrationIntent.putExtra(EXTRA_PASSWORD, binding.editTextTextPassword.text.toString())
+            registrationIntent.putExtra(EXTRA_USERNAME, binding.editTextLoginUsername.text.toString())
+            registrationIntent.putExtra(EXTRA_PASSWORD, binding.editTextLoginPassword.text.toString())
             startRegistrationForResult.launch(registrationIntent)
         }
-        binding.buttonLogin.setOnClickListener {
+        binding.buttonLoginButton.setOnClickListener {
             Backendless.UserService.login(
-                binding.editTextTextPersonName.text.toString(),
-                binding.editTextTextPassword.text.toString(),
+                binding.editTextLoginUsername.text.toString(),
+                binding.editTextLoginPassword.text.toString(),
                 object :AsyncCallback<BackendlessUser?>{
                     override fun handleResponse(user: BackendlessUser?) {
                         Log.d(TAG, " handleResponse: ${user?.getProperty("username")} has logged in")
