@@ -26,12 +26,18 @@ class MovieDetailActivity : AppCompatActivity() {
         binding = ActivityMovieDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         var passedMovie = intent.getParcelableExtra<MovieData>(EXTRA_MOVIE)
+
         if (passedMovie == null) {
             movie = MovieData()
             toggleEditable()
         } else {
             movie = passedMovie!!
-            binding.textViewDetailName.setText(movie.name)
+            binding.textViewDetailName.setText(passedMovie.name)
+            binding.textView10DetailMatrat.setText(passedMovie.maturityRating)
+            binding.textView11DetailRuntime.setText(passedMovie.runtime).toString()
+            binding.textViewDetailGenre.setText(passedMovie.genre).toString()
+            binding.textViewDetailPlot.setText(passedMovie.plot)
+            binding.textViewDetailYear.setText(passedMovie.year).toString()
         }
             binding.buttonDetailSave.setOnClickListener {
                 movie.name = binding.textViewDetailName.text.toString()
