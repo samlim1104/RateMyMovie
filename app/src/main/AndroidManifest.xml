@@ -19,11 +19,11 @@
             android:name=".RegistrationActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
             android:name=".MovieDetailActivity"
             android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"/>
         <activity
             android:name=".MovieListActivity"
             android:exported="true" >

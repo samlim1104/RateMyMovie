@@ -15,7 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class  MovieListActivity : AppCompatActivity() {
+class MovieListActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMovieListBinding
     lateinit var adapter : MovieAdapter
     companion object {
@@ -38,30 +38,6 @@ class  MovieListActivity : AppCompatActivity() {
                 putExtra(EXTRA_USER_ID, userId)
             }
             startActivity(loanDetailIntent)
-        }
-
-        binding.buttonSearch.setOnClickListener{
-            var name = binding.editTextTextSearch.text
-
-            val movieDataService = RetrofitHelper.getInstance().create(MovieDataSevice::class.java)
-            val movieDataCall = movieDataService.getMovieDataByTitle(name.toString(), Constants.API_KEY)
-
-            movieDataCall.enqueue(object: Callback<List<MovieData>>{
-                override fun onResponse(
-                    call: Call<List<MovieData>>,
-                    response: Response<List<MovieData>>
-                ) {
-                    Log.d(TAG, "onResponse ${response.raw()}")
-
-                    adapter = MovieAdapter(response.body() as MutableList<MovieData>)
-                    binding.recyclerViewActivityMovielist.adapter = adapter
-                    binding.recyclerViewActivityMovielist.layoutManager = LinearLayoutManager(this@MovieListActivity)
-                }
-
-                override fun onFailure(call: Call<List<MovieData>>, t: Throwable) {
-                    Log.d(TAG, "onFailure: ${t.message}")
-                }
-            })
         }
     }
     override fun onStart() {
