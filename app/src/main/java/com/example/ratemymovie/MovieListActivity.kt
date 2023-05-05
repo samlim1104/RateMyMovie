@@ -36,12 +36,6 @@ class MovieListActivity : AppCompatActivity() {
         if(userId != null) {
             retrieveAllData(userId!!)
         }
-        binding.fabLoanListCreateNewMovie.setOnClickListener {
-            val loanDetailIntent = Intent(this, MovieDetailActivity::class.java).apply {
-                putExtra(EXTRA_USER_ID, userId)
-            }
-            startActivity(loanDetailIntent)
-        }
     }
     override fun onStart() {
         super.onStart()
