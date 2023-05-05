@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.backendless.Backendless
 import com.backendless.async.callback.AsyncCallback
@@ -43,6 +45,11 @@ class MovieListActivity : AppCompatActivity() {
         if(userId != null) {
             retrieveAllData(userId)
         }
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu_loan_detail, menu)
+        return true
     }
 
     private fun retrieveAllData(userId : String) {
