@@ -22,11 +22,11 @@
             android:name=".MovieDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".MovieListActivity"
+            android:name=".LoginActivity"
             android:exported="false"/>
-            <activity
-                android:name=".LoginActivity"
-                android:exported="true">
+        <activity
+            android:name=".MovieListActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
