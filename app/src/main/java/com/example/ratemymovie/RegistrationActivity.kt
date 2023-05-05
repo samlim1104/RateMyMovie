@@ -31,15 +31,6 @@ class RegistrationActivity : AppCompatActivity() {
             val username = binding.editTextRegUsername.text.toString()
             val email = binding.editTextRegEmail.text.toString()
             if(RegistrationUtil.validatePassword(password,confirm) && RegistrationUtil.validateUsername(username)) {
-
-//                val resultIntent = Intent().apply {
-//                    //apply {putExtra()} is doing the sane thing as resultIntent.putExtra()
-//                    putExtra(
-//                        LoginActivity.EXTRA_USERNAME,
-//                        binding.editTextRegUsername.text.toString()
-//                    )
-//                    putExtra(LoginActivity.EXTRA_PASSWORD, password)
-//                }
                 val user = BackendlessUser()
                 user.setProperty("email", email)
                 user.setProperty("username",username)
