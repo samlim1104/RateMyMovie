@@ -7,12 +7,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import com.example.ratemymovie.databinding.ActivityLoginBinding
 import com.backendless.Backendless
 import com.backendless.BackendlessUser
 import com.backendless.async.callback.AsyncCallback
+import com.example.ratemymovie.databinding.ActivityLoginBinding
 import com.backendless.exceptions.BackendlessFault
-import com.backendless.persistence.DataQueryBuilder
 
 class LoginActivity : AppCompatActivity() {
     companion object{
