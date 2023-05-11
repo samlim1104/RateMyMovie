@@ -4,9 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.backendless.Backendless
 import com.backendless.async.callback.AsyncCallback
@@ -36,33 +33,42 @@ class MovieListActivity : AppCompatActivity() {
         if(userId != null) {
             retrieveAllData(userId!!)
         }
+        binding.fabLoanListCreateNewMovie.setOnClickListener {
+            val loanDetailIntent = Intent(this, MovieDetailActivity::class.java).apply {
+                putExtra(EXTRA_USER_ID, userId)
+            }
+            startActivity(loanDetailIntent)
+        }
+
+        binding.buttonSearch.setOnClickListener{
+            var name = binding.editTextTextSearch.text
+
+            val movieDataService = RetrofitHelper.getInstance().create(MovieDataSevice::class.java)
+            val movieDataCall = movieDataService.getMovieDataByTitle(name.toString(), Constants.API_KEY)
+
+            movieDataCall.enqueue(object: Callback<List<MovieData>>{
+                override fun onResponse(
+                    call: Call<List<MovieData>>,
+                    response: Response<List<MovieData>>
+                ) {
+                    Log.d(TAG, "onResponse ${response.body()}")
+
+                    adapter = MovieAdapter(response.body() as MutableList<MovieData>)
+                    binding.recyclerViewActivityMovielist.adapter = adapter
+                    binding.recyclerViewActivityMovielist.layoutManager = LinearLayoutManager(this@MovieListActivity)
+                }
+
+                override fun onFailure(call: Call<List<MovieData>>, t: Throwable) {
+                    Log.d(TAG, "onFailure: ${t.message}")
+                }
+            })
+        }
     }
     override fun onStart() {
         super.onStart()
         val userId = intent.getStringExtra(EXTRA_USER_ID)
         if(userId != null) {
             retrieveAllData(userId)
-        }
-    }
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.menu_loan_detail, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId){
-            R.id.menu_login ->{
-                val loginIntent = Intent(this, LoginActivity :: class.java)
-                startActivity(loginIntent)
-                true
-            }
-            R.id.menu_Registration ->{
-                val registrationIntent = Intent(this, RegistrationActivity:: class.java)
-                startActivity(registrationIntent)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
         }
     }
 
