@@ -39,6 +39,30 @@ class MovieListActivity : AppCompatActivity() {
             }
             startActivity(loanDetailIntent)
         }
+
+        binding.buttonSearch.setOnClickListener{
+            var name = binding.editTextTextSearch.text
+
+            val movieDataService = RetrofitHelper.getInstance().create(MovieDataSevice::class.java)
+            val movieDataCall = movieDataService.getMovieDataByTitle(name.toString(), Constants.API_KEY)
+
+            movieDataCall.enqueue(object: Callback<List<MovieData>>{
+                override fun onResponse(
+                    call: Call<List<MovieData>>,
+                    response: Response<List<MovieData>>
+                ) {
+                    Log.d(TAG, "onResponse ${response.body()}")
+
+                    adapter = MovieAdapter(response.body() as MutableList<MovieData>)
+                    binding.recyclerViewActivityMovielist.adapter = adapter
+                    binding.recyclerViewActivityMovielist.layoutManager = LinearLayoutManager(this@MovieListActivity)
+                }
+
+                override fun onFailure(call: Call<List<MovieData>>, t: Throwable) {
+                    Log.d(TAG, "onFailure: ${t.message}")
+                }
+            })
+        }
     }
     override fun onStart() {
         super.onStart()
