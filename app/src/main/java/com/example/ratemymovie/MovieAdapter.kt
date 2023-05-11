@@ -39,6 +39,7 @@ class MovieAdapter(var movieList: MutableList<MovieData>):
         var context = holder.textViewMovieName.context
         holder.textViewMovieName.text = movie.name
         holder.textViewRating.text = movie.rating.toString()
+        holder.rat
 
         holder.layout.setOnClickListener {
             val loanDetailActivity = Intent(it.context, MovieDetailActivity::class.java)

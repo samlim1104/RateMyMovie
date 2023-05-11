@@ -39,7 +39,9 @@ class MovieDetailActivity : AppCompatActivity() {
             binding.textViewDetailYear.setText(passedMovie.year).toString()
         }
             binding.buttonDetailSave.setOnClickListener {
+                movie.rating = binding.ratingBarDetailRating.rating
                 movie.name = binding.textViewDetailName.text.toString()
+
                 Backendless.Data.of(MovieData::class.java)
                     .save(movie, object : AsyncCallback<MovieData> {
                         override fun handleResponse(response: MovieData?) {
@@ -73,6 +75,8 @@ class MovieDetailActivity : AppCompatActivity() {
                 })
         }
 
+    
+
     private fun toggleEditable() {
         if (MovieIsEditable) {
             MovieIsEditable = false
@@ -80,6 +84,7 @@ class MovieDetailActivity : AppCompatActivity() {
             binding.buttonDetailSave.visibility = View.GONE
             binding.textViewDetailName.inputType = InputType.TYPE_NULL
             binding.textViewDetailName.isEnabled = false
+
         } else {
             MovieIsEditable = false
             binding.buttonDetailSave.isEnabled = true
