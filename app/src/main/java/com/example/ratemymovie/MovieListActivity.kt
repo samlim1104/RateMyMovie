@@ -4,6 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.backendless.Backendless
 import com.backendless.async.callback.AsyncCallback
@@ -31,7 +34,7 @@ class MovieListActivity : AppCompatActivity() {
         Log.d("onCreate", "$userId")
         // it's saying the userId is null..
         if(userId != null) {
-            retrieveAllData(userId!!)
+            //retrieveAllData(userId!!)
         }
         binding.fabLoanListCreateNewMovie.setOnClickListener {
             val loanDetailIntent = Intent(this, MovieDetailActivity::class.java).apply {
@@ -69,6 +72,27 @@ class MovieListActivity : AppCompatActivity() {
         val userId = intent.getStringExtra(EXTRA_USER_ID)
         if(userId != null) {
             retrieveAllData(userId)
+        }
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu_loan_detail, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.menu_login ->{
+                val loginIntent = Intent(this, LoginActivity :: class.java)
+                startActivity(loginIntent)
+                true
+            }
+            R.id.menu_Registration ->{
+                val registrationIntent = Intent(this, RegistrationActivity:: class.java)
+                startActivity(registrationIntent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
