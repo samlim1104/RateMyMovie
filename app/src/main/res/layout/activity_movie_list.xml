@@ -2,18 +2,23 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/TextAppearance.Material3.BodyLarge"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
+    android:backgroundTint="@color/white"
     tools:context=".MovieListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_activity_movielist"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="2dp"
+        android:background="@color/darkGrey"
+        android:foregroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText_search"
         app:layout_constraintVertical_bias="0.0" />
@@ -24,7 +29,13 @@
         android:layout_height="86dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="#B11414"
+        android:drawableTint="#FF0000"
+        android:fontFamily="sans-serif-black"
         android:text="ADD MOVIE"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -33,9 +44,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Movie Name"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#000000"
+        android:textColorLink="#000000"
         app:layout_constraintEnd_toStartOf="@+id/button_search"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,7 +58,9 @@
         android:id="@+id/button_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FF0707"
         android:text="Search"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView_activity_movielist"
         app:layout_constraintEnd_toEndOf="parent" />
 
