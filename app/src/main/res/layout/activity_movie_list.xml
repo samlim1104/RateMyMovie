@@ -43,7 +43,7 @@
         android:id="@+id/button_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Search"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView_activity_movielist"
         app:layout_constraintEnd_toEndOf="parent" />
 
