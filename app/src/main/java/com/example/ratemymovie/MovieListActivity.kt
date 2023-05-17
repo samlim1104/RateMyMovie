@@ -29,7 +29,6 @@ class MovieListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val userId = intent.getStringExtra(EXTRA_USER_ID)
         Log.d("onCreate", "$userId")
         // it's saying the userId is null..

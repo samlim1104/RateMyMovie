@@ -12,5 +12,8 @@ data class MovieData(
     var runtime: Int = 121,
     var genre: String = "genre",
     var plot: String = "plot",
+    var rating: Float = 4.5f,
+    var ownerId: String? = null,
+    var objectId: String? = null
 
 ):Parcelable
