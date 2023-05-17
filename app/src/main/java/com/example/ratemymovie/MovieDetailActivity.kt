@@ -1,6 +1,5 @@
 package com.example.ratemymovie
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
@@ -51,33 +50,23 @@ class MovieDetailActivity : AppCompatActivity() {
         }
         Log.d(TAG, "onCreate: rating: $rating")
             binding.buttonDetailSave.setOnClickListener {
-                if (Backendless.UserService.CurrentUser() != null) {
-                    if (rating.ownerId.isNullOrBlank()) {
-                        Log.d(
-                            TAG,
-                            "onCreate userId: ${intent.getStringExtra(MovieListActivity.EXTRA_USER_ID)}"
-                        )
-                        rating.ownerId = intent.getStringExtra(MovieListActivity.EXTRA_USER_ID)!!
-                    }
-                    rating.rating = binding.ratingBarDetailRating.rating
-                    rating.imbdbID
-                    Backendless.Data.of(Rating::class.java)
-                        .save(rating, object : AsyncCallback<Rating> {
-                            override fun handleResponse(response: Rating?) {
-                                Log.d("hand", "handleResponse ${response}")
-                            }
+                if(rating.ownerId.isNullOrBlank()){
+                    Log.d(TAG, "onCreate userId: ${intent.getStringExtra(MovieListActivity.EXTRA_USER_ID)}")
+                    rating.ownerId = intent.getStringExtra(MovieListActivity.EXTRA_USER_ID)!!
+                }
+                rating.rating = binding.ratingBarDetailRating.rating
+                rating.imbdID = binding.textViewDetailImdbid.text.toString()
+                Backendless.Data.of(Rating::class.java)
+                    .save(rating, object : AsyncCallback<Rating> {
+                        override fun handleResponse(response: Rating?) {
+                            Log.d("hand", "handleResponse ${response}")
+                        }
 
-                            override fun handleFault(fault: BackendlessFault?) {
-                                Log.d("fault", "handleFault ${fault!!.message}")
-                            }
-                        })
-                    finish()
-                }
-                else{
-                    val loginIntent = Intent(this, LoginActivity :: class.java)
-                    startActivity(loginIntent)
-                    finish()
-                }
+                        override fun handleFault(fault: BackendlessFault?) {
+                            Log.d("fault", "handleFault ${fault!!.message}")
+                        }
+                    })
+                finish()
             }
         }
         private fun deleteFromBackendless() {
