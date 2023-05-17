@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +22,7 @@ class MovieAdapter(var movieList: MutableList<MovieData>):
 
         init {
             textViewMovieName = view.findViewById(R.id.textView_movie_name)
-            textViewRating = view.findViewById(R.id.textView_movie_rating)
+            textViewRating = view.findViewById(R.id.textView_movie_pg)
             layout = view.findViewById(R.id.layout_movie)
 
         }
