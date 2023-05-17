@@ -41,11 +41,12 @@ class LoginActivity : AppCompatActivity() {
                 binding.editTextLoginPassword.text.toString(),
                 object : AsyncCallback<BackendlessUser?> {
                     override fun handleResponse(user: BackendlessUser?) {
-                        Log.d(TAG, " handleResponse: ${user?.getProperty("username")} has logged in")
+                        Log.d(TAG, " handleResponse: ${user?.getProperty("username")} has logged in ${user?.email}")
                         if (user != null) {
                             val movieListIntent = Intent(it.context, MovieListActivity::class.java)
                             movieListIntent.putExtra(MovieListActivity.EXTRA_USER_ID, user.objectId)
                             it.context.startActivity(movieListIntent)
+                            finish()
                         }
                     }
 

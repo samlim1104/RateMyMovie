@@ -20,6 +20,7 @@ class MovieDetailActivity : AppCompatActivity() {
     companion object {
         val EXTRA_MOVIE = "movie"
         val EXTRA_RATING = "rating"
+        val TAG = "MovieDetailActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,11 +48,14 @@ class MovieDetailActivity : AppCompatActivity() {
             binding.textViewDetailPlot.setText(passedMovie.plot)
             binding.textViewDetailYear.setText(passedMovie.year).toString()
         }
+        Log.d(TAG, "onCreate: rating: $rating")
             binding.buttonDetailSave.setOnClickListener {
                 if(rating.ownerId.isNullOrBlank()){
+                    Log.d(TAG, "onCreate userId: ${intent.getStringExtra(MovieListActivity.EXTRA_USER_ID)}")
                     rating.ownerId = intent.getStringExtra(MovieListActivity.EXTRA_USER_ID)!!
                 }
-
+                rating.rating = binding.ratingBarDetailRating.rating
+                rating.imbdbID
                 Backendless.Data.of(Rating::class.java)
                     .save(rating, object : AsyncCallback<Rating> {
                         override fun handleResponse(response: Rating?) {

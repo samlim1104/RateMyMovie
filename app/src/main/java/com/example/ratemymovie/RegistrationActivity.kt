@@ -34,18 +34,19 @@ class RegistrationActivity : AppCompatActivity() {
                 val user = BackendlessUser()
                 user.setProperty("email", email)
                 user.setProperty("username",username)
-                user.password = password.toString()
+                user.password = password
 
                 Backendless.UserService.register(user, object : AsyncCallback<BackendlessUser?> {
                     override fun handleResponse(registeredUser: BackendlessUser?) {
-                        Log.d(ControlsProviderService.TAG, "handleResponse : ${user?.getProperty("username")} has been registered")
+                        Log.d("registration activity", "handleResponse : ${user?.getProperty("username")} has been registered")
+                        finish()
                     }
 
                     override fun handleFault(fault: BackendlessFault) {
                         Log.d(TAG, "handleFault: ${fault?.message}")
                     }
                 })
-                finish()
+
             }
         }
     }

@@ -70,6 +70,7 @@ class MovieListActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val userId = intent.getStringExtra(EXTRA_USER_ID)
+        Log.d(TAG, "onStart: $userId")
         if(userId != null) {
             retrieveAllData(userId)
         }
@@ -85,6 +86,7 @@ class MovieListActivity : AppCompatActivity() {
             R.id.menu_login ->{
                 val loginIntent = Intent(this, LoginActivity :: class.java)
                 startActivity(loginIntent)
+                finish()
                 true
             }
             R.id.menu_Registration ->{
@@ -102,9 +104,9 @@ class MovieListActivity : AppCompatActivity() {
         queryBuilder.whereClause = whereClause
         Backendless.Data.of(MovieData::class.java).find(queryBuilder, object :
             AsyncCallback<List<MovieData?>?> {
-            override fun handleResponse(foundLoans: List<MovieData?>?) {
-                Log.d(TAG, "handleResponse: $foundLoans")
-                adapter = MovieAdapter(foundLoans as MutableList<MovieData>)
+            override fun handleResponse(foundMovies: List<MovieData?>?) {
+                Log.d(TAG, "handleResponse: $foundMovies")
+                adapter = MovieAdapter(foundMovies as MutableList<MovieData>)
                 binding.recyclerViewActivityMovielist.adapter = adapter
                 binding.recyclerViewActivityMovielist.layoutManager =
                     LinearLayoutManager(this@MovieListActivity)
