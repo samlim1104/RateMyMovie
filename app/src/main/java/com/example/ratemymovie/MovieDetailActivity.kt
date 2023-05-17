@@ -55,7 +55,7 @@ class MovieDetailActivity : AppCompatActivity() {
                     rating.ownerId = intent.getStringExtra(MovieListActivity.EXTRA_USER_ID)!!
                 }
                 rating.rating = binding.ratingBarDetailRating.rating
-                rating.imbdbID
+                rating.imbdID = binding.textViewDetailImdbid.text.toString()
                 Backendless.Data.of(Rating::class.java)
                     .save(rating, object : AsyncCallback<Rating> {
                         override fun handleResponse(response: Rating?) {
