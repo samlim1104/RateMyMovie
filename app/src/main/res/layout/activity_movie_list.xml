@@ -58,7 +58,7 @@
         android:id="@+id/button_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FF0707"
+        android:backgroundTint="#B11414"
         android:text="Search"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView_activity_movielist"
