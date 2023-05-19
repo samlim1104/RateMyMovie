@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.backendless.Backendless
 import com.backendless.async.callback.AsyncCallback
 import com.backendless.exceptions.BackendlessFault
-class MovieAdapter(var movieList: MovieWrapper?):
+class MovieAdapter(var movieList: MutableList<MovieData>):
     RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewMovieName: TextView
@@ -34,11 +34,10 @@ class MovieAdapter(var movieList: MovieWrapper?):
         return ViewHolder(view)
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val movie = movieList!!.results!!.get(position)
-
-        holder.textViewMovieName.text = movie.name
+        val movie = movieList[position]
         var context = holder.textViewMovieName.context
         holder.textViewMovieName.text = movie.name
+        holder.textViewRating.text = movie.rating.toString()
 
         holder.layout.setOnClickListener {
             val loanDetailActivity = Intent(it.context, MovieDetailActivity::class.java)
@@ -46,11 +45,11 @@ class MovieAdapter(var movieList: MovieWrapper?):
             it.context.startActivity(loanDetailActivity)
         }
     }
-    private fun deleteFromBackendless(position: Int, con : Context) {
-        Backendless.Data.of(MovieData::class.java).remove(movieList!!.results!!.get(position),
+    /*private fun deleteFromBackendless(position: Int, con : Context) {
+        Backendless.Data.of(MovieData::class.java).remove(movieList[position],
             object : AsyncCallback<Long?> {
                 override fun handleResponse(response: Long?) {
-                    Toast.makeText(con, "${movieList!!.results!!.get(position).name} Deleted", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(con, "${movieList[position].movieName} Deleted", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun handleFault(fault: BackendlessFault?) {
@@ -60,6 +59,7 @@ class MovieAdapter(var movieList: MovieWrapper?):
                 }
             })
     }
+*/
+    override fun getItemCount() = movieList.size
 
-    override fun getItemCount() = movieList!!.results!!.size
 }
