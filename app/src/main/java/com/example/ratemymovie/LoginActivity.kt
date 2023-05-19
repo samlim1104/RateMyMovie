@@ -10,8 +10,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.backendless.Backendless
 import com.backendless.BackendlessUser
 import com.backendless.async.callback.AsyncCallback
-import com.example.ratemymovie.databinding.ActivityLoginBinding
 import com.backendless.exceptions.BackendlessFault
+import com.example.ratemymovie.databinding.ActivityLoginBinding
+
 
 class LoginActivity : AppCompatActivity() {
     companion object{
@@ -54,14 +55,14 @@ class LoginActivity : AppCompatActivity() {
                     }
                 })
         }
-            binding.textViewLoginSignup.setOnClickListener {
-                val registrationIntent = Intent(this, RegistrationActivity::class.java)
+        binding.textViewLoginSignup.setOnClickListener {
+            val registrationIntent = Intent(this, RegistrationActivity::class.java)
 
-                registrationIntent.putExtra(EXTRA_USERNAME, binding.editTextLoginUsername.text.toString())
-                registrationIntent.putExtra(EXTRA_PASSWORD, binding.editTextLoginPassword.text.toString())
-                startActivity(registrationIntent)
-                startRegistrationForResult.launch(registrationIntent)
-            }
+            registrationIntent.putExtra(EXTRA_USERNAME, binding.editTextLoginUsername.text.toString())
+            registrationIntent.putExtra(EXTRA_PASSWORD, binding.editTextLoginPassword.text.toString())
+            startActivity(registrationIntent)
+            startRegistrationForResult.launch(registrationIntent)
         }
     }
+}
 
