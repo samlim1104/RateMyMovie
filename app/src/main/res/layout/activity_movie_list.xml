@@ -46,7 +46,7 @@
         android:ems="10"
         android:hint="Movie Name"
         android:inputType="textPersonName"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textColorHighlight="#000000"
         android:textColorLink="#000000"
         app:layout_constraintEnd_toStartOf="@+id/button_search"
