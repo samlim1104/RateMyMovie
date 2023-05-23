@@ -49,11 +49,11 @@ class MovieDetailActivity : AppCompatActivity() {
         } else {
             movie = passedMovie!!
             binding.textViewDetailName.setText(passedMovie.name)
-            binding.textView10DetailMatrat.setText(passedMovie.maturityRating)
-            binding.textViewDetailRuntime.setText(passedMovie.runtime).toString()
-            binding.textViewDetailGenre.setText(passedMovie.genre).toString()
-            binding.textViewDetailPlot.setText(passedMovie.plot)
-            binding.textViewDetailYear.setText(passedMovie.year).toString()
+            binding.textView10DetailMatrat.setText(passedMovie.Rated)
+            binding.textView11DetailRuntime.setText(passedMovie.Runtime).toString()
+            binding.textViewDetailGenre.setText(passedMovie.Genre).toString()
+            binding.textViewDetailPlot.setText(passedMovie.Plot)
+            binding.textViewDetailYear.setText(passedMovie.Year).toString()
         }
         Log.d(TAG, "onCreate: rating: $rating")
         binding.buttonDetailSave.setOnClickListener {

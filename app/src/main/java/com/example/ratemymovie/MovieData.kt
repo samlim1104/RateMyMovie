@@ -9,12 +9,12 @@ import java.util.*
 data class MovieData(
     @SerializedName("Title")
     var name: String,
-    var maturityRating: String,
+    var Rated: String,
     @SerializedName("Year")
-    var year: Int,
-    var runtime: Int,
-    var genre: String,
-    var plot: String,
+    var Year: Int,
+    var Runtime: Int,
+    var Genre: String,
+    var Plot: String,
     var rating: Float,
     var ownerId: String,
     var objectId: String,
