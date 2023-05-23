@@ -38,19 +38,12 @@ class MovieAdapter(var movieList: MovieWrapper?):
 
         holder.textViewMovieName.text = movie.name
         var context = holder.textViewMovieName.context
-        holder.textViewRating.text = movie.Rated
+        holder.textViewRating.text = movie.year.toString()
 
         holder.layout.setOnClickListener {
             val loanDetailActivity = Intent(it.context, MovieDetailActivity::class.java)
-
-            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_GENRE, movie.Genre)
-            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_PLOT, movie.Plot)
-            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_OWNERID, movie.ownerId)
-            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_YEAR, movie.Year)
-            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_MATURITYRATING, movie.Rated)
-            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_OBJECTID, movie.objectId)
+            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_MOVIE, movie)
             loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_RATING, movie.rating)
-            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_RUNTIME, movie.Runtime)
 
             it.context.startActivity(loanDetailActivity)
         }

@@ -9,14 +9,18 @@ import java.util.*
 data class MovieData(
     @SerializedName("Title")
     var name: String,
-    var Rated: String,
+    @SerializedName("Rated")
+    var rated: String?,
     @SerializedName("Year")
-    var Year: Int,
-    var Runtime: Int,
-    var Genre: String,
-    var Plot: String,
-    var rating: Float,
-    var ownerId: String,
-    var objectId: String,
+    var year: Int?,
+    @SerializedName("Runtime")
+    var runtime: String?,
+    @SerializedName("Genre")
+    var genre: String?,
+    @SerializedName("Plot")
+    var plot: String?,
+    var rating: Float?,
+    var ownerId: String?,
+    var objectId: String?,
 
-):Parcelable
+    ):Parcelable
