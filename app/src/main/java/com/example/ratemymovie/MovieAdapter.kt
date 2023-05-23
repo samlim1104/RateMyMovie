@@ -34,7 +34,7 @@ class MovieAdapter(var movieList: MovieWrapper?):
         return ViewHolder(view)
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val movie = movieList!!.results!!.get(position)
+        var movie = movieList!!.results!!.get(position)
 
         holder.textViewMovieName.text = movie.name
         var context = holder.textViewMovieName.context
@@ -42,7 +42,17 @@ class MovieAdapter(var movieList: MovieWrapper?):
 
         holder.layout.setOnClickListener {
             val loanDetailActivity = Intent(it.context, MovieDetailActivity::class.java)
-            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_MOVIE, movie)
+
+            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_GENRE, movie.genre)
+            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_PLOT, movie.plot)
+            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_OWNERID, movie.ownerId)
+            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_YEAR, movie.year)
+            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_PLOT, movie.plot)
+            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_MATURITYRATING, movie.maturityRating)
+            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_OBJECTID, movie.objectId)
+            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_RATING, movie.rating)
+            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_RUNTIME, movie.runtime)
+
             it.context.startActivity(loanDetailActivity)
         }
     }

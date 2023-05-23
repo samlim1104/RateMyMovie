@@ -56,7 +56,7 @@ class MovieListActivity : AppCompatActivity() {
                 ) {
                     Log.d(TAG, "onResponse ${response.body()}\n${response.raw()}")
 
-                    adapter = MovieAdapter(response.body()?.results as MutableList<MovieData>)
+                    adapter = MovieAdapter(response.body())
                     binding.recyclerViewActivityMovielist.adapter = adapter
                     binding.recyclerViewActivityMovielist.layoutManager = LinearLayoutManager(this@MovieListActivity)
                 }

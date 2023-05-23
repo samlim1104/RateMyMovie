@@ -19,7 +19,14 @@ class MovieDetailActivity : AppCompatActivity() {
     lateinit var rating: Rating
     companion object {
         val EXTRA_MOVIE = "movie"
+        val EXTRA_MATURITYRATING = "maturityRating"
+        val EXTRA_YEAR = "year"
+        val EXTRA_RUNTIME = "runtime"
+        val EXTRA_GENRE = "genre"
+        val EXTRA_PLOT = "plot"
         val EXTRA_RATING = "rating"
+        val EXTRA_OWNERID = "ownerId"
+        val EXTRA_OBJECTID = "objectId"
         val TAG = "MovieDetailActivity"
     }
 
@@ -37,7 +44,7 @@ class MovieDetailActivity : AppCompatActivity() {
             binding.ratingBarDetailRating.rating = (passedRating.rating)
         }
         if (passedMovie == null) {
-            movie = MovieData()
+            movie = MovieData("", "", 0, 0, "", "", 0F, "", "")
             toggleEditable()
         } else {
             movie = passedMovie!!
