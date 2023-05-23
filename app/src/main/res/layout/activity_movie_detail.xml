@@ -9,15 +9,18 @@
 
     <TextView
         android:id="@+id/textView_detail_name"
-        android:layout_width="356dp"
-        android:layout_height="103dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         android:fontFamily="sans-serif-medium"
         android:text="The Super Mario Bros. Movie"
         android:textColor="#000000"
         android:textSize="34sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
