@@ -14,30 +14,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="2dp"
-        android:background="@color/white"
-        android:foregroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText_search"
         app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/fab_loanList_createNewMovie"
-        android:layout_width="166dp"
-        android:layout_height="86dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#B11414"
-        android:drawableTint="#FF0000"
-        android:fontFamily="sans-serif-black"
-        android:text="ADD MOVIE"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:iconTint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/editTextText_search"
@@ -63,5 +45,13 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView_activity_movielist"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="414dp"
+        android:layout_height="79dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/moviestrip22" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,15 +8,15 @@ import java.util.*
 @Parcelize
 data class MovieData(
     @SerializedName("Title")
-    var name: String = "name",
-    var maturityRating: String = "PG",
+    var name: String,
+    var Rated: String,
     @SerializedName("Year")
-    var year: Int = 1996,
-    var runtime: Int = 121,
-    var genre: String = "genre",
-    var plot: String = "plot",
-    var rating: Float = 4.5f,
-    var ownerId: String? = null,
-    var objectId: String? = null
+    var Year: Int,
+    var Runtime: Int,
+    var Genre: String,
+    var Plot: String,
+    var rating: Float,
+    var ownerId: String,
+    var objectId: String,
 
 ):Parcelable
