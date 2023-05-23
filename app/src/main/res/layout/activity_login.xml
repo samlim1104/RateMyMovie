@@ -11,8 +11,8 @@
 
     <EditText
         android:id="@+id/editText_login_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
         android:layout_marginTop="32dp"
         android:ems="10"
         android:foregroundTint="#FFFFFF"
@@ -25,8 +25,8 @@
 
     <EditText
         android:id="@+id/editText_login_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
         android:layout_marginTop="200dp"
         android:ems="10"
         android:foregroundTint="#000000"
@@ -39,8 +39,8 @@
 
     <Button
         android:id="@+id/button_loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="123dp"
+        android:layout_height="64dp"
         android:layout_marginTop="32dp"
         android:backgroundTint="#B11414"
         android:text="login"
@@ -62,5 +62,13 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_login_password" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="414dp"
+        android:layout_height="79dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/moviestrip22" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,11 +8,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.backendless.Backendless
-import com.backendless.async.callback.AsyncCallback
-import com.backendless.exceptions.BackendlessFault
-import com.backendless.persistence.DataQueryBuilder
-import com.example.ratemymovie.databinding.ActivityMovieDetailBinding
 import com.example.ratemymovie.databinding.ActivityMovieListBinding
 import retrofit2.Call
 import retrofit2.Callback
