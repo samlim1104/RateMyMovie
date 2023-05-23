@@ -50,7 +50,7 @@ class MovieDetailActivity : AppCompatActivity() {
             movie = passedMovie!!
             binding.textViewDetailName.setText(passedMovie.name)
             binding.textView10DetailMatrat.setText(passedMovie.Rated)
-            binding.textView11DetailRuntime.setText(passedMovie.Runtime).toString()
+            binding.textViewDetailRuntime.setText(passedMovie.Runtime).toString()
             binding.textViewDetailGenre.setText(passedMovie.Genre).toString()
             binding.textViewDetailPlot.setText(passedMovie.Plot)
             binding.textViewDetailYear.setText(passedMovie.Year).toString()
