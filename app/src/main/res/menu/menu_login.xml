@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_log_reg"
+        android:title="Login and Registration"
+        android:icon="@drawable/ic_baseline_login"
+        app:showAsAction="ifRoom">
+    </item>
+    <item android:id="@+id/my_list"
+        android:title="My Favorites"
+        android:icon="@drawable/ic_baseline_view_headline_24"></item>
+    <item android:id="@+id/wanted_watch"
+        android:title="List to Watch"></item>
+</menu>

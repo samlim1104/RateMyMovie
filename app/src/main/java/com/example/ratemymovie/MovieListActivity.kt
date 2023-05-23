@@ -9,10 +9,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.backendless.Backendless
-import com.backendless.async.callback.AsyncCallback
-import com.backendless.exceptions.BackendlessFault
-import com.backendless.persistence.DataQueryBuilder
-import com.example.ratemymovie.databinding.ActivityMovieDetailBinding
 import com.example.ratemymovie.databinding.ActivityMovieListBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -76,26 +72,36 @@ class MovieListActivity : AppCompatActivity() {
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.menu_loan_detail, menu)
+        inflater.inflate(R.menu.menu_login, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
-            R.id.menu_login ->{
+            R.id.menu_log_reg ->{
                 val loginIntent = Intent(this, LoginActivity :: class.java)
                 startActivity(loginIntent)
                 true
             }
-            R.id.menu_Registration ->{
-                val registrationIntent = Intent(this, RegistrationActivity:: class.java)
-                startActivity(registrationIntent)
+            R.id.my_list ->{
+                if(Backendless.UserService.CurrentUser() == null)
+                {
+                    val loginIntent = Intent(this, LoginActivity :: class.java)
+                    startActivity(loginIntent)
+                }
+                true
+            }
+            R.id.wanted_watch ->{
+                if(Backendless.UserService.CurrentUser() == null)
+                {
+                    val loginIntent = Intent(this, LoginActivity :: class.java)
+                    startActivity(loginIntent)
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
-
     /*private fun retrieveAllData(userId : String) {
         val whereClause = "ownerId = '$userId'"
         val queryBuilder = DataQueryBuilder.create()
