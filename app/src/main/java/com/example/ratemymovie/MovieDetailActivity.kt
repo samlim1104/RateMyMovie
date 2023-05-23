@@ -2,19 +2,15 @@ package com.example.ratemymovie
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.service.controls.ControlsProviderService.TAG
 import android.text.InputType
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.backendless.Backendless
 import com.backendless.async.callback.AsyncCallback
 import com.backendless.exceptions.BackendlessFault
 import com.example.ratemymovie.databinding.ActivityMovieDetailBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import java.util.*
 
 class MovieDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMovieDetailBinding
@@ -23,7 +19,14 @@ class MovieDetailActivity : AppCompatActivity() {
     lateinit var rating: Rating
     companion object {
         val EXTRA_MOVIE = "movie"
+        val EXTRA_MATURITYRATING = "maturityRating"
+        val EXTRA_YEAR = "year"
+        val EXTRA_RUNTIME = "runtime"
+        val EXTRA_GENRE = "genre"
+        val EXTRA_PLOT = "plot"
         val EXTRA_RATING = "rating"
+        val EXTRA_OWNERID = "ownerId"
+        val EXTRA_OBJECTID = "objectId"
         val TAG = "MovieDetailActivity"
     }
 
@@ -33,7 +36,6 @@ class MovieDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         var passedMovie = intent.getParcelableExtra<MovieData>(EXTRA_MOVIE)
         var passedRating = intent.getParcelableExtra<Rating>(EXTRA_RATING)
-        Log.d(TAG, "onCreate: $passedMovie")
 
         if(passedRating == null){
             rating = Rating()
@@ -42,39 +44,16 @@ class MovieDetailActivity : AppCompatActivity() {
             binding.ratingBarDetailRating.rating = (passedRating.rating)
         }
         if (passedMovie == null) {
-            movie = MovieData("", "", 0, "", "", "", 0F, "", "")
+            movie = MovieData("", "", 0, 0, "", "", 0F, "", "")
             toggleEditable()
         } else {
             movie = passedMovie!!
-            val movieService = RetrofitHelper.getInstance().create(MovieDataSevice::class.java)
-            val movieCall = movieService.getMovieDetailByTitle(movie.name, Constants.API_KEY)
-
-            movieCall.enqueue(object: Callback<MovieData> {
-                override fun onResponse(
-                    call: Call<MovieData>,
-                    response: Response<MovieData>
-                ) {
-                    Log.d(TAG, "onResponse ${response.body()}\n${response.raw()}")
-
-                    binding.textViewDetailName.text = response.body()?.name
-                    binding.textViewDetailGenre.text = response.body()?.genre
-                    binding.textView10DetailMatrat.text = response.body()?.rated
-                    binding.textViewDetailPlot.text = response.body()?.plot
-                    binding.textView12DetailMin.text = response.body()?.runtime
-                    binding.textViewDetailImdbid.text = response.body()?.objectId
-
-                }
-
-                override fun onFailure(call: Call<MovieData>, t: Throwable) {
-                    Log.d(TAG, "onFailure: ${t.message}")
-                }
-            })
             binding.textViewDetailName.setText(passedMovie.name)
-            binding.textView10DetailMatrat.setText(passedMovie.rated)
-            //binding.textView11DetailRuntime.setText(passedMovie.runtime).toString()
-            binding.textViewDetailGenre.setText(passedMovie.genre).toString()
-            binding.textViewDetailPlot.setText(passedMovie.plot)
-            //binding.textViewDetailYear.setText(passedMovie.year!!).toString()
+            binding.textView10DetailMatrat.setText(passedMovie.Rated)
+            binding.textViewDetailRuntime.setText(passedMovie.Runtime).toString()
+            binding.textViewDetailGenre.setText(passedMovie.Genre).toString()
+            binding.textViewDetailPlot.setText(passedMovie.Plot)
+            binding.textViewDetailYear.setText(passedMovie.Year).toString()
         }
         Log.d(TAG, "onCreate: rating: $rating")
         binding.buttonDetailSave.setOnClickListener {
