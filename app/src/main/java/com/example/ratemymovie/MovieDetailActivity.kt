@@ -62,6 +62,7 @@ class MovieDetailActivity : AppCompatActivity() {
                     binding.textViewDetailPlot.text = response.body()?.plot
                     binding.textView12DetailMin.text = response.body()?.runtime
                     binding.textViewDetailImdbid.text = response.body()?.objectId
+                    binding.textViewDetailYear.text = response.body()?.year.toString()
 
                 }
 
