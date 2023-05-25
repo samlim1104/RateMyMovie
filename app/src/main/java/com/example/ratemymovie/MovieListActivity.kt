@@ -84,6 +84,10 @@ class MovieListActivity : AppCompatActivity() {
                     val loginIntent = Intent(this, LoginActivity :: class.java)
                     startActivity(loginIntent)
                 }
+                else{
+                    val listIntent = Intent(this, MyList::class.java)
+                    startActivity(listIntent)
+                }
                 true
             }
             R.id.wanted_watch ->{

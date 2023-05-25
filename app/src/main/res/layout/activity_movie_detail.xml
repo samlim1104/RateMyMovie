@@ -92,8 +92,10 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/ratingBar_detail_rating"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_detail_imdbid" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_detail_imdbid"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button_detail_save"
@@ -156,5 +158,15 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_detail_name" />
+
+    <Switch
+        android:id="@+id/switch_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="Favorite?"
+        app:layout_constraintBottom_toTopOf="@+id/ratingBar_detail_rating"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
