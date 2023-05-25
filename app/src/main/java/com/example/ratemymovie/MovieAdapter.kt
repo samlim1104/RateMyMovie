@@ -45,6 +45,7 @@ class MovieAdapter(var movieList: MovieWrapper?):
             loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_MOVIE, movie)
             loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_RATING, movie.rating)
 
+
             it.context.startActivity(loanDetailActivity)
         }
     }

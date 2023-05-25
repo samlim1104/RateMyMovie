@@ -17,6 +17,7 @@ import retrofit2.Response
 class MovieListActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMovieListBinding
     lateinit var adapter : MovieAdapter
+    lateinit var userId : String
     companion object {
         val EXTRA_USER_ID = "userId"
         val TAG = "MovieListActivity"
@@ -59,7 +60,7 @@ class MovieListActivity : AppCompatActivity() {
     }
     override fun onStart() {
         super.onStart()
-        val userId = intent.getStringExtra(EXTRA_USER_ID)
+        userId = intent.getStringExtra(EXTRA_USER_ID).toString()
         if(userId != null) {
             //retrieveAllData(userId)
         }

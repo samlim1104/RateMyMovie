@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.backendless.Backendless
 import com.backendless.async.callback.AsyncCallback
+import com.backendless.async.callback.Fault
 import com.backendless.exceptions.BackendlessFault
 import com.example.ratemymovie.databinding.ActivityMovieDetailBinding
 import retrofit2.Call
@@ -63,6 +64,8 @@ class MovieDetailActivity : AppCompatActivity() {
                     binding.textView12DetailMin.text = response.body()?.runtime
                     binding.textViewDetailImdbid.text = response.body()?.objectId
                     binding.textViewDetailYear.text = response.body()?.year.toString()
+                    binding.ratingBarDetailRating.rating = rating.rating
+
 
                 }
 
@@ -73,44 +76,52 @@ class MovieDetailActivity : AppCompatActivity() {
         }
         Log.d(TAG, "onCreate: rating: $rating")
         binding.buttonDetailSave.setOnClickListener {
-            if(rating.ownerId.isNullOrBlank()){
-                Log.d(TAG, "onCreate userId: ${intent.getStringExtra(MovieListActivity.EXTRA_USER_ID)}")
-                rating.ownerId = intent.getStringExtra(MovieListActivity.EXTRA_USER_ID)!!
+            if (!rating.ownerId.isNullOrBlank()) {
+//                rating.ownerId = intent.getStringExtra(MovieListActivity.EXTRA_USER_ID).toString()
+                rating.ownerId = Backendless.UserService.CurrentUser().objectId
             }
-            rating.rating = binding.ratingBarDetailRating.rating
-            rating.imbdID = binding.textViewDetailImdbid.text.toString()
-            Backendless.Data.of(Rating::class.java)
-                .save(rating, object : AsyncCallback<Rating> {
-                    override fun handleResponse(response: Rating?) {
-                        Log.d("hand", "handleResponse ${response}")
-                    }
 
-                    override fun handleFault(fault: BackendlessFault?) {
-                        Log.d("fault", "handleFault ${fault!!.message}")
+            rating.rating = binding.ratingBarDetailRating.rating
+            rating.movieName = binding.textViewDetailName.text.toString()
+            rating.imbdID = binding.textViewDetailImdbid.text.toString()
+            if (rating.rating == null) {
+                Backendless.Data.of(Rating::class.java)
+                    .save(rating, object : AsyncCallback<Rating> {
+                        override fun handleResponse(response: Rating?) {
+                            Log.d("hand", "handleResponse ${response}")
+                        }
+
+                        override fun handleFault(fault: BackendlessFault?) {
+                            Log.d("fault", "handleFault ${fault!!.message}")
+                        }
+                    })
+                finish()
+            }
+            else {
+                Backendless.Data.of(Rating::class.java).remove(rating, object : AsyncCallback<Long?> {
+                    override fun handleResponse(response: Long?) {
+                        Toast.makeText(this@MovieDetailActivity,"${movie.name} Rating Deleted", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+                    override fun handleFault(fault: BackendlessFault) {
+                        Log.d("MovieDetail", "handleFault: ${fault.message}")
                     }
                 })
-            finish()
+                Backendless.Data.of(Rating::class.java)
+                    .save(rating, object : AsyncCallback<Rating> {
+                        override fun handleResponse(response: Rating?) {
+                            Log.d("hand", "handleResponse ${response}")
+                        }
+
+                        override fun handleFault(fault: BackendlessFault?) {
+                            Log.d("fault", "handleFault ${fault!!.message}")
+                        }
+                    })
+                finish()
+            }
         }
     }
-    private fun deleteFromBackendless() {
-        Backendless.Data.of(MovieData::class.java).remove(movie,
-            object : AsyncCallback<Long?> {
-                override fun handleResponse(response: Long?) {
-// Person has been deleted. The response is the
-// time in milliseconds when the object was deleted
-                    Toast.makeText(
-                        this@MovieDetailActivity,
-                        "${movie.name} Deleted",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    finish()
-                }
-
-                override fun handleFault(fault: BackendlessFault) {
-                    Log.d("BirthdayDetail", "handleFault: ${fault.message}")
-                }
-            })
-    }
+   //private fun retrieveAllData()
 
 
 
