@@ -90,14 +90,7 @@ class MovieListActivity : AppCompatActivity() {
                 }
                 true
             }
-            R.id.wanted_watch ->{
-                if(Backendless.UserService.CurrentUser() == null)
-                {
-                    val loginIntent = Intent(this, LoginActivity :: class.java)
-                    startActivity(loginIntent)
-                }
-                true
-            }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

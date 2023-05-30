@@ -80,7 +80,7 @@ class MovieDetailActivity : AppCompatActivity() {
 //            rating.isFavorited = true
 //           }
 //        }
-        Log.d(TAG, "onCreate: rating: $rating")
+//        Log.d(TAG, "onCreate: rating: $rating")
         binding.buttonDetailSave.setOnClickListener {
             if(Backendless.UserService.CurrentUser() != null) {
                 if (!rating.ownerId.isNullOrBlank()) {
@@ -91,7 +91,10 @@ class MovieDetailActivity : AppCompatActivity() {
                 rating.rating = binding.ratingBarDetailRating.rating
                 rating.movieName = binding.textViewDetailName.text.toString()
                 rating.imbdID = binding.textViewDetailImdbid.text.toString()
-                rating.isFavorited = binding.switchFavorite.isChecked
+                if(binding.switchFavorite.isChecked)
+                {
+                    rating.favorited = true
+                }
                 if (rating.rating == null) {
                     Backendless.Data.of(Rating::class.java)
                         .save(rating, object : AsyncCallback<Rating> {

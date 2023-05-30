@@ -10,7 +10,7 @@ data class Rating (
     var rating: Float = 0f,
     var ownerId: String? = null,
     var objectId: String? = null,
-    var isFavorited: Boolean = false
+    var favorited: Boolean = false
         ):Parcelable {
 
 }

@@ -39,13 +39,13 @@ class MyList : AppCompatActivity() {
     }
 
     private fun retrieveAllData(userId:String){
-        val whereClause = "ownerId =  '$userId' AND isFavorited = True"
+        val whereClause = "ownerId =  '$userId' AND favorited = TRUE"
         val queryBuilder = DataQueryBuilder.create()
         queryBuilder.whereClause = whereClause
         Backendless.Data.of(Rating::class.java).find(queryBuilder, object :
             AsyncCallback<List<Rating?>?> {
             override fun handleResponse(foundRatings: List<Rating?>?) {
-                Log.d(LoginActivity.TAG, "handleResponse : $foundRatings")
+                Log.d(MovieDetailActivity.TAG, "hi : $foundRatings")
                 adapter = RatingAdapter(foundRatings as MutableList<Rating>)
                 binding.recyclerMyList.adapter = adapter
                 binding.recyclerMyList.layoutManager = LinearLayoutManager(this@MyList)
