@@ -41,12 +41,12 @@ class MovieAdapter(var movieList: MovieWrapper?):
         holder.textViewRating.text = movie.year.toString()
 
         holder.layout.setOnClickListener {
-            val loanDetailActivity = Intent(it.context, MovieDetailActivity::class.java)
-            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_MOVIE, movie)
-            loanDetailActivity.putExtra(MovieDetailActivity.EXTRA_RATING, movie.rating)
+            val movieDetailActivity = Intent(it.context, MovieDetailActivity::class.java)
+            movieDetailActivity.putExtra(MovieDetailActivity.EXTRA_MOVIE, movie)
+            movieDetailActivity.putExtra(MovieDetailActivity.EXTRA_RATING, movie.rating)
 
 
-            it.context.startActivity(loanDetailActivity)
+            it.context.startActivity(movieDetailActivity)
         }
     }
     private fun deleteFromBackendless(position: Int, con : Context) {

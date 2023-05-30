@@ -27,6 +27,7 @@ class MovieDetailActivity : AppCompatActivity() {
         val EXTRA_MOVIE = "movie"
         val EXTRA_RATING = "rating"
         val TAG = "MovieDetailActivity"
+        val EXTRA_MOVIENAME = "name"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

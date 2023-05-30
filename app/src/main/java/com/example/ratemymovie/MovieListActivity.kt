@@ -90,7 +90,6 @@ class MovieListActivity : AppCompatActivity() {
                 }
                 true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
     }
