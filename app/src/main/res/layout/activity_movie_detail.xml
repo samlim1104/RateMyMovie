@@ -17,7 +17,7 @@
         android:fontFamily="sans-serif-medium"
         android:text="The Super Mario Bros. Movie"
         android:textColor="#000000"
-        android:textSize="34sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -28,16 +28,15 @@
         android:id="@+id/textView10_detail_matrat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="288dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-medium"
         android:text="PG"
         android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_detail_genre"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.625"
-        app:layout_constraintStart_toEndOf="@+id/textView_detail_genre" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detail_genre" />
 
     <TextView
         android:id="@+id/textView12_detail_min"
@@ -82,10 +81,10 @@
         android:id="@+id/textView_detail_plot"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
         android:fontFamily="sans-serif-medium"
         android:text="PLOT:"
         android:textColor="#000000"
@@ -121,7 +120,7 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_detail_genre" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10_detail_matrat" />
 
     <ImageView
         android:id="@+id/imageView2"
