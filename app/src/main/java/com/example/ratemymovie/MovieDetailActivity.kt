@@ -65,7 +65,7 @@ class MovieDetailActivity : AppCompatActivity() {
                     binding.textView12DetailMin.text = response.body()?.runtime
                     binding.textViewDetailImdbid.text = response.body()?.objectId
                     binding.textViewDetailYear.text = response.body()?.year.toString()
-                    binding.ratingBarDetailRating.rating = rating.rating
+                    //binding.ratingBarDetailRating.rating = response.body()?.rating!!
 
 
                 }
